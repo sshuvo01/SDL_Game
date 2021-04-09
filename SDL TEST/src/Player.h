@@ -43,6 +43,5 @@ public:
 	void Update(double deltaTime) override; // send input as parameter
 	void Render() override;
 	void HandleInput(const SDL_Event& event, double deltaTime) override;
-
 };
 

@@ -9,10 +9,17 @@
 #include "Player.h"
 #include "Vector2.h"
 #include "Obstacle.h"
+#include "CircularBG.h"
+#include "Sprite.h"
+#include "PlayerNew.h"
+#include "TSGround.h"
+#include <map>
+#include "SpriteController.h"
 
 int main()
 {
 	/**/
+	/*
 	GameEngine theGE;
 	Player* thePlayer = new Player({ 2, 300 }, 60, 60);
 	Obstacle* lb = new Obstacle({ 140, 280 }, 30, 80);
@@ -29,9 +36,69 @@ int main()
 	theGE.AddGameObject(gr);
 
 	theGE.Run();
+	*/
+	/*
+	double Y[3] = { 1.1, 1.1, 1.1 };
+	float delta[3] = { 0.1f, 0.1f, 0.1f };
+	size_t i = Y[0] / delta[0]; // i=10
+	size_t j = (float)Y[1] / (float)delta[1]; // j=11
+	size_t k = (double)Y[1] / (double)delta[1]; // k=10
 
+	std::cout << i << " " << j << " " << k << std::endl;
 	std::cin.get();
+	if (1.1 + 2.2 == 3.3)
+	{
+		std::cout << "asdf";
+	}
+	
+	{
+		std::map<char, int> first;
 
+		first['a'] = 10;
+		first['a'] = 20;
+		first['b'] = 30;
+		first['c'] = 50;
+		first['d'] = 70;
+
+		std::cout << first.count('e') << std::endl;
+
+		std::cin.get();
+	}
+	*/
+	GameEngine theGameEngine;
+	SDL_Renderer* renderer = theGameEngine.GetRenderer();
+	
+	int groundHeight = 490; // from top
+	/*sprites*/
+	Sprite runSprite("res/img/Run_Sprite.png", renderer, "run", 384, 7);
+	Sprite idleSprite("res/img/Idle_Sprite.png", renderer, "idle", 384, 10);
+	SpriteController playerSprite;
+	playerSprite.AddSprite(&runSprite);
+	playerSprite.AddSprite(&idleSprite);
+	/*sprites*/
+
+	/*player*/
+	int playerW = 96;
+	int playerH = 125;
+	Vector2 playerPos(500, groundHeight - playerH);
+	PlayerNew plNew = PlayerNew(playerPos, playerW, playerH);
+	plNew.m_IdleSprite = &idleSprite;
+	plNew.m_RunSprite = &runSprite;
+	plNew.m_SpriteController = &playerSprite;
+	/*player*/
+
+	CircularBG bg("res/img/BG2.png", 1);
+	CircularBG cloudsBG("res/img/clouds2.png", 2);
+	TSGround tsGround;
+
+	/*this order is important*/
+	theGameEngine.AddGameObject(&bg);
+	theGameEngine.AddGameObject(&cloudsBG);
+	theGameEngine.AddGameObject(&plNew);
+	theGameEngine.AddGameObject(&tsGround);
+	theGameEngine.Run();
+	/*******************************/
+	std::cin.get();
 	return 0;
 }
 

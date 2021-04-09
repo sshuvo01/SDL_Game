@@ -11,16 +11,15 @@ struct StateTransition
 
 class StateMachine
 {
-private:
-	std::vector<StateTransition>		m_Transitions;
-	std::string							m_CurrentState;
-	std::string							m_DefaultState;
 public:
 	StateMachine(const std::string& defaultState);
 	~StateMachine();
 
 	void AddTransition(const std::string& from, const std::string& to);
 	bool TransitionTo(const std::string& targetState);
-
 	inline std::string GetCurrentState() const { return m_CurrentState; }
+private:
+	std::vector<StateTransition>		m_Transitions;
+	std::string							m_CurrentState;
+	std::string							m_DefaultState;
 };

@@ -82,10 +82,10 @@ void GameEngine::Render()
 
 void GameEngine::Run()
 {
-	double frameDuration = 1.00 / (double)m_MaxFPS;
+	double frameDuration = 1000.00 / (double)m_MaxFPS;
 	double frameStartTime;
 	double elapsedtime;
-
+	std::cout << "max fps: " << m_MaxFPS << std::endl;
 	Init();
 
 	while (m_GameRunning)
@@ -94,9 +94,9 @@ void GameEngine::Run()
 		HandleEvents();
 		UpdateMechanics();
 		Render();
-		elapsedtime = frameStartTime - SDL_GetTicks();
+		elapsedtime =  SDL_GetTicks() - frameStartTime;
 		/*limit the FPS*/
-		if (elapsedtime < frameDuration)
+		if (elapsedtime < (Uint32) frameDuration)
 		{
 			SDL_Delay(frameDuration - elapsedtime);
 		}

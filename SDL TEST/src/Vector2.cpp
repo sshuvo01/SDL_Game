@@ -41,7 +41,6 @@ Vector2 Vector2::operator+=(const Vector2 & v)
 
 Vector2 & Vector2::operator=(const Vector2 & v)
 {
-	// TODO: insert return statement here
 	m_X = v.m_X;
 	m_Y = v.m_Y;
 	return *this;
@@ -49,7 +48,12 @@ Vector2 & Vector2::operator=(const Vector2 & v)
 
 int & Vector2::operator[](unsigned int index)
 {
-	// TODO: insert return statement here
+	if (index == 0) return m_X;
+	if (index == 1) return m_Y;
+}
+
+const int & Vector2::operator[](unsigned int index) const
+{
 	if (index == 0) return m_X;
 	if (index == 1) return m_Y;
 }

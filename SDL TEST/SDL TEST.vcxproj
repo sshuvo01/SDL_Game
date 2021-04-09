@@ -130,18 +130,25 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="src\Application.cpp" />
+    <ClCompile Include="src\CircularBG.cpp" />
     <ClCompile Include="src\Collision.cpp" />
     <ClCompile Include="src\GameEngine.cpp" />
     <ClCompile Include="src\GameObject.cpp" />
     <ClCompile Include="src\Ground.cpp" />
     <ClCompile Include="src\Obstacle.cpp" />
     <ClCompile Include="src\Player.cpp" />
+    <ClCompile Include="src\PlayerNew.cpp" />
+    <ClCompile Include="src\Sprite.cpp" />
+    <ClCompile Include="src\SpriteController.cpp" />
     <ClCompile Include="src\StateMachine.cpp" />
     <ClCompile Include="src\Texture.cpp" />
     <ClCompile Include="src\TexturesSlider.cpp" />
+    <ClCompile Include="src\Tileset.cpp" />
+    <ClCompile Include="src\TSGround.cpp" />
     <ClCompile Include="src\Vector2.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\CircularBG.h" />
     <ClInclude Include="src\Collision.h" />
     <ClInclude Include="src\Core.h" />
     <ClInclude Include="src\GameEngine.h" />
@@ -149,9 +156,14 @@
     <ClInclude Include="src\Ground.h" />
     <ClInclude Include="src\Obstacle.h" />
     <ClInclude Include="src\Player.h" />
+    <ClInclude Include="src\PlayerNew.h" />
+    <ClInclude Include="src\Sprite.h" />
+    <ClInclude Include="src\SpriteController.h" />
     <ClInclude Include="src\StateMachine.h" />
     <ClInclude Include="src\Texture.h" />
     <ClInclude Include="src\TexturesSlider.h" />
+    <ClInclude Include="src\Tileset.h" />
+    <ClInclude Include="src\TSGround.h" />
     <ClInclude Include="src\Vector2.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
