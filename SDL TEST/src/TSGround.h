@@ -3,6 +3,7 @@
 #include "GameObject.h"
 #include "Tileset.h"
 #include "StateMachine.h"
+#include "PlayerNew.h"
 
 class TSGround : public GameObject
 {
@@ -14,6 +15,8 @@ public:
 	void Update(double deltaTime) override; 
 	void Render() override;
 	void HandleInput(const SDL_Event& event, double deltaTime) override;
+	/*public members*/
+	PlayerNew*		m_Player;
 private:
 	Tileset			m_Tileset;
 	int				m_YOffset;

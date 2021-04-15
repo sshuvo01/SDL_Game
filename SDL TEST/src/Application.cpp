@@ -15,6 +15,8 @@
 #include "TSGround.h"
 #include <map>
 #include "SpriteController.h"
+#include "ParticleEmitter.h"
+#include "Coins.h"
 
 int main()
 {
@@ -72,9 +74,11 @@ int main()
 	/*sprites*/
 	Sprite runSprite("res/img/Run_Sprite.png", renderer, "run", 384, 7);
 	Sprite idleSprite("res/img/Idle_Sprite.png", renderer, "idle", 384, 10);
+	Sprite hurtSprite("res/img/Hurt_Sprite.png", renderer, "hurt", 384, 7, true);
 	SpriteController playerSprite;
 	playerSprite.AddSprite(&runSprite);
 	playerSprite.AddSprite(&idleSprite);
+	playerSprite.AddSprite(&hurtSprite);
 	/*sprites*/
 
 	/*player*/
@@ -89,16 +93,40 @@ int main()
 
 	CircularBG bg("res/img/BG2.png", 1);
 	CircularBG cloudsBG("res/img/clouds2.png", 2);
+	ParticleEmitter peRed(50, "res/img/red.png");
+	ParticleEmitter peWhite(30, "res/img/white.png");
 	TSGround tsGround;
 
+	bg.m_Player = &plNew;
+	cloudsBG.m_Player = &plNew;
+	tsGround.m_Player = &plNew;
+	Coins theCoins(groundHeight);
+	theCoins.m_Player = &plNew;
+	theCoins.m_CollectParticle = &peWhite;
+	theCoins.m_HurtParticle = &peRed;
 	/*this order is important*/
 	theGameEngine.AddGameObject(&bg);
 	theGameEngine.AddGameObject(&cloudsBG);
 	theGameEngine.AddGameObject(&plNew);
+	theGameEngine.AddGameObject(&theCoins);
 	theGameEngine.AddGameObject(&tsGround);
+	theGameEngine.AddGameObject(&peRed);
+	theGameEngine.AddGameObject(&peWhite);
 	theGameEngine.Run();
 	/*******************************/
 	std::cin.get();
 	return 0;
 }
 
+int main22()
+{
+	GameEngine theGameEngine;
+	SDL_Renderer* renderer = theGameEngine.GetRenderer();
+
+	ParticleEmitter pe(30, "res/img/red2.png");
+	theGameEngine.AddGameObject(&pe);
+	theGameEngine.Run();
+
+	std::cin.get();
+	return 0;
+}

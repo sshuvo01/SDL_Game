@@ -12,6 +12,7 @@ public:
 	void LoadTexture(const std::string& path, SDL_Renderer* renderer, SDL_Rect rect = SDL_Rect(), 
 		int* srcW = nullptr, int* srcH = nullptr);
 	void RenderCopy(const SDL_Rect& srcRect, const SDL_Rect& dstRect);
+	void RenderCopy(const SDL_Rect& dstRect); // full srcRect
 	void RenderCopyHFlip(const SDL_Rect& srcRect, const SDL_Rect& dstRect);
 	SDL_Texture* GetTexture() const;
 	SDL_Rect* GetRect();

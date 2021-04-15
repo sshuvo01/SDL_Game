@@ -7,10 +7,10 @@ class Sprite
 {
 public:
 	Sprite(const std::string& filepath, SDL_Renderer* renderer,
-		const std::string& spriteName, int frameW, int frameCount);
+		const std::string& spriteName, int frameW, int frameCount, bool playOnce = false);
 	~Sprite();
 
-	void Render(const SDL_Rect& dstRect, bool flip = false);
+	bool Render(const SDL_Rect& dstRect, bool flip = false);
 	inline void ResetFrames() { m_FrameNumber = 0; }
 	inline const std::string GetName() const { return m_Name; }
 private:
@@ -23,4 +23,5 @@ private:
 	const int			m_FrameRate;
 	Uint32				m_LastFrameUpdateTime;
 	Uint32				m_FrameDuration;
+	bool				m_PlayOnce;
 };

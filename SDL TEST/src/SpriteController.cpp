@@ -39,3 +39,33 @@ void SpriteController::Play(const std::string & spriteName, const SDL_Rect& dstR
 	}
 	m_LastPlayedSprite = spriteName;
 }
+
+bool SpriteController::PlayOnce(const std::string & spriteName, const SDL_Rect & dstRect, bool flip)
+{
+	/*returns true if the sprite reaches the last frame*/
+	if (m_SpriteMap.count(spriteName) == 0)
+	{
+		std::cout << "Sprite " << spriteName << " not found\n";
+		return false;
+	}
+
+	bool reachedLastFrame = false;
+
+	
+	if (m_SpriteMap[spriteName]->Render(dstRect, flip))
+	{
+		// playing last frame
+
+		reachedLastFrame = true;
+	}
+	
+	if (spriteName != m_LastPlayedSprite)
+	{
+		// sprite switch
+		if (m_LastPlayedSprite != "") m_SpriteMap[m_LastPlayedSprite]->ResetFrames();
+	}
+
+	m_LastPlayedSprite = spriteName;
+	
+	return reachedLastFrame;
+}

@@ -40,6 +40,11 @@ void CircularBG::Init(GameEngine * ge)
 
 void CircularBG::Update(double deltaTime)
 {
+	if (m_Player->m_StateMachine.GetCurrentState() == "hurt")
+	{
+		m_StateMachine.TransitionTo("idle");
+	}
+
 	if (m_StateMachine.GetCurrentState() == "moveleft")
 	{
 		m_SrcXOffset += m_MovementSpeed;

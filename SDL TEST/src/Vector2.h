@@ -21,6 +21,5 @@ public:
 	inline int X() const { return m_X; }
 	inline int Y() const { return m_Y; }
 private:
-	int		m_X;
-	int		m_Y;
+	int		m_X, m_Y;
 };

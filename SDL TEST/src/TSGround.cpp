@@ -38,6 +38,11 @@ void TSGround::Init(GameEngine * ge)
 
 void TSGround::Update(double deltaTime)
 {
+	if (m_Player->m_StateMachine.GetCurrentState() == "hurt")
+	{
+		m_StateMachine.TransitionTo("idle");
+	}
+
 	int speed = 3;
 	if (m_StateMachine.GetCurrentState() == "moveright")
 	{

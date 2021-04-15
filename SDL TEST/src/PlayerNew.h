@@ -27,10 +27,10 @@ public:
 	Sprite*				m_RunSprite;
 	Sprite*				m_IdleSprite;
 	SpriteController*	m_SpriteController;
-private:
 	Vector2				m_Position;
 	int					m_Width, m_Height;
 	StateMachine		m_StateMachine;
+private:
 	FaceDirection		m_FaceDirection;
 	/*private functions*/
 	void SetupStateMachine();

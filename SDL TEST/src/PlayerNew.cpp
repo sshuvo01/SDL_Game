@@ -51,8 +51,28 @@ void PlayerNew::Render()
 	}
 	else if (m_StateMachine.GetCurrentState() == "run")
 	{
-		if(m_SpriteController) m_SpriteController->Play("run", dstRect, flipHorizontally);
+		if (m_SpriteController)
+		{
+			bool playedLast = m_SpriteController->PlayOnce("run", dstRect, flipHorizontally);
+			/*if (playedLast)
+			{
+				//std::cout << "The end of a sprite\n";
+			}
+			else
+			{
+				std::cout << "This is not the end\n";
+			}
+			*/
+		}
 		//m_RunSprite->PlayAnimation(dstRect);
+	}
+	else if (m_StateMachine.GetCurrentState() == "hurt")
+	{
+		bool playedLast = m_SpriteController->PlayOnce("hurt", dstRect, flipHorizontally);
+		if (playedLast)
+		{
+			m_StateMachine.TransitionTo("idle");
+		}
 	}
 }
 
@@ -118,6 +138,12 @@ void PlayerNew::HandleInput(const SDL_Event & event, double deltaTime)
 			break;
 		}
 		break;
+	case SDLK_w:
+		if (event.type == SDL_KEYDOWN)
+		{
+			m_StateMachine.TransitionTo("hurt");
+		}
+		break;
 	default:
 		break;
 	}
@@ -127,4 +153,9 @@ void PlayerNew::SetupStateMachine()
 {
 	m_StateMachine.AddTransition("idle", "run");
 	m_StateMachine.AddTransition("run", "idle");
+	
+	m_StateMachine.AddTransition("idle", "hurt");
+	m_StateMachine.AddTransition("hurt", "idle");
+
+	m_StateMachine.AddTransition("run", "hurt");
 }

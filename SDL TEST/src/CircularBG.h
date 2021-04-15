@@ -4,6 +4,7 @@
 #include "Vector2.h"
 #include "Texture.h"
 #include "StateMachine.h"
+#include "PlayerNew.h"
 
 class CircularBG : public GameObject
 {
@@ -15,6 +16,7 @@ public:
 	void Update(double deltaTime) override;
 	void Render() override;
 	void HandleInput(const SDL_Event& event, double deltaTime) override;
+	PlayerNew*		m_Player;
 private:
 	Texture			m_Texture;
 	std::string		m_TexturePath;

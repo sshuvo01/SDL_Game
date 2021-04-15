@@ -57,6 +57,11 @@ void Texture::RenderCopy(const SDL_Rect& srcRect, const SDL_Rect& dstRect)
 	SDL_RenderCopy(m_Renderer, m_Texture, &srcRect, &dstRect);
 }
 
+void Texture::RenderCopy(const SDL_Rect & dstRect)
+{
+	SDL_RenderCopy(m_Renderer, m_Texture, NULL, &dstRect);
+}
+
 void Texture::RenderCopyHFlip(const SDL_Rect & srcRect, const SDL_Rect & dstRect)
 {
 	SDL_RenderCopyEx(m_Renderer, m_Texture, &srcRect, &dstRect, 0.0, NULL, SDL_FLIP_HORIZONTAL);
