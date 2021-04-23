@@ -2,14 +2,14 @@
 #include <iostream>
 
 Sprite::Sprite(const std::string& filepath, SDL_Renderer* renderer,
-	const std::string& spriteName, int frameW, int frameCount, bool playOnce)
+	const std::string& spriteName, int frameW, int frameCount, bool playOnce, int frameRate)
 	: m_Filepath(filepath),
 	m_Name(spriteName),
 	m_FrameWidth(frameW),
 	m_Texture(filepath, renderer),
 	m_FrameNumber(0),
 	m_FrameCount(frameCount),
-	m_FrameRate(10),
+	m_FrameRate(frameRate),
 	m_PlayOnce(playOnce)
 {
 	m_LastFrameUpdateTime = SDL_GetTicks();

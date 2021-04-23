@@ -15,4 +15,5 @@ public:
 	~Collision();
 
 	static bool DetectRectCollision(const Rectangle& rect1, const Rectangle& rect2);
+	static bool DetectXBoundaryCollision(const Rectangle& rect, int minX, int maxX);
 };

@@ -28,6 +28,7 @@ Texture::Texture(const std::string & path, SDL_Renderer * renderer, int x, int y
 
 Texture::~Texture()
 {
+	SDL_DestroyTexture(m_Texture);
 }
 
 void Texture::LoadTexture(const std::string & path, SDL_Renderer* renderer, 
@@ -60,6 +61,11 @@ void Texture::RenderCopy(const SDL_Rect& srcRect, const SDL_Rect& dstRect)
 void Texture::RenderCopy(const SDL_Rect & dstRect)
 {
 	SDL_RenderCopy(m_Renderer, m_Texture, NULL, &dstRect);
+}
+
+void Texture::RenderCopyHFlip(const SDL_Rect & dstRect)
+{
+	SDL_RenderCopyEx(m_Renderer, m_Texture, NULL, &dstRect, 0.0, NULL, SDL_FLIP_HORIZONTAL);
 }
 
 void Texture::RenderCopyHFlip(const SDL_Rect & srcRect, const SDL_Rect & dstRect)

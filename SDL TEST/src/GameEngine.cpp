@@ -80,6 +80,17 @@ void GameEngine::Render()
 	SDL_RenderPresent(m_Renderer);
 }
 
+void GameEngine::ProcessBuffer()
+{
+	if (m_GameObjectsBuffer.size() == 0) return;
+	m_GameObjects.insert(m_GameObjects.end(), m_GameObjectsBuffer.begin(), m_GameObjectsBuffer.end());
+	for (GameObject* go : m_GameObjectsBuffer)
+	{
+		go->Init(this);
+	}
+	m_GameObjectsBuffer.clear();
+}
+
 void GameEngine::Run()
 {
 	double frameDuration = 1000.00 / (double)m_MaxFPS;
@@ -101,10 +112,17 @@ void GameEngine::Run()
 			SDL_Delay(frameDuration - elapsedtime);
 		}
 		m_DeltaTime = frameStartTime - SDL_GetTicks();
+		// end of a frame
+		ProcessBuffer();
 	} // end of while
 }
 
 void GameEngine::AddGameObject(GameObject * go)
 {
 	m_GameObjects.push_back(go);
+}
+
+void GameEngine::AddGameObjectBuffer(GameObject * go)
+{
+	m_GameObjectsBuffer.push_back(go);
 }

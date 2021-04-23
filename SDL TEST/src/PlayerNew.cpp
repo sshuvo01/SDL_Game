@@ -53,7 +53,8 @@ void PlayerNew::Render()
 	{
 		if (m_SpriteController)
 		{
-			bool playedLast = m_SpriteController->PlayOnce("run", dstRect, flipHorizontally);
+			if (m_SpriteController) m_SpriteController->Play("run", dstRect, flipHorizontally);
+			//bool playedLast = m_SpriteController->PlayOnce("run", dstRect, flipHorizontally);
 			/*if (playedLast)
 			{
 				//std::cout << "The end of a sprite\n";

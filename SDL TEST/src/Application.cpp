@@ -17,8 +17,11 @@
 #include "SpriteController.h"
 #include "ParticleEmitter.h"
 #include "Coins.h"
+#include "PlayerCOM.h"
+#include "Bullet.h"
+#include "CallOfMonsters.h"
 
-int main()
+int main444()
 {
 	/**/
 	/*
@@ -125,6 +128,40 @@ int main22()
 
 	ParticleEmitter pe(30, "res/img/red2.png");
 	theGameEngine.AddGameObject(&pe);
+	theGameEngine.Run();
+
+	std::cin.get();
+	return 0;
+}
+
+int main()
+{
+	GameEngine theGameEngine;
+	SDL_Renderer* renderer = theGameEngine.GetRenderer();
+
+	int groundHeight = 490; // from top
+	Sprite idleSprite = Sprite("res/img/player/Player_Idle_New.png", renderer, "idle", 216, 17, false, 15);
+	Sprite runSprite = Sprite("res/img/player/Player_Run.png", renderer, "run", 216, 17, false, 30);
+	Sprite shootSprite = Sprite("res/img/player/Player_Shoot.png", renderer, "shoot", 216, 15, true, 40);
+
+	SpriteController playerSprites;
+	playerSprites.AddSprite(&idleSprite);
+	playerSprites.AddSprite(&runSprite);
+	playerSprites.AddSprite(&shootSprite);
+
+	int playerW = 215/2;
+	int playerH = 300/2;
+	Vector2 playerPos(500, groundHeight - playerH);
+	PlayerCOM player(playerPos, playerW, playerH);
+	player.m_SpriteController = &playerSprites;
+
+	CallOfMonsters gameControl;
+	player.m_GameControl = &gameControl;
+	//Bullet aBullet = Bullet(playerPos, 384/16, 320/16, -3);
+	CallOfMonsters* aaa;
+	theGameEngine.AddGameObject(&player);
+	//theGameEngine.AddGameObject(&aBullet);
+	theGameEngine.AddGameObject(&gameControl);
 	theGameEngine.Run();
 
 	std::cin.get();

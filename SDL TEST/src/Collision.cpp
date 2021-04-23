@@ -21,3 +21,16 @@ bool Collision::DetectRectCollision(const Rectangle & rect1, const Rectangle & r
 
 	return false;
 }
+
+bool Collision::DetectXBoundaryCollision(const Rectangle & rect, int minX, int maxX)
+{
+	int xExtentMin = rect.position[0];
+	int xExtentMax = rect.position[0] + rect.width;
+
+	if (xExtentMin < minX || xExtentMax > maxX)
+	{
+		return true;
+	}
+
+	return false;
+}

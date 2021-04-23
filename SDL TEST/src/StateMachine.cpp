@@ -31,3 +31,17 @@ bool StateMachine::TransitionTo(const std::string & targetState)
 
 	return false;
 }
+
+bool StateMachine::HasTransition(const std::string & fromState, const std::string & targetState) const
+{
+	if (fromState == targetState) true;
+	for (StateTransition st : m_Transitions)
+	{
+		if (st.from == fromState && st.to == targetState)
+		{
+			return true;
+		}
+	}
+
+	return false;
+}

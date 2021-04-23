@@ -13,6 +13,7 @@ public:
 	~GameEngine();
 	void Run();
 	void AddGameObject(GameObject* go);	
+	void AddGameObjectBuffer(GameObject* go);
 	/*setters and getters*/
 	inline unsigned int GetWidth() const { return m_ScreenWidth; }
 	inline unsigned int GetHeight() const { return m_ScreenHeight; }
@@ -23,6 +24,7 @@ public:
 	inline unsigned int GetScreenHeight() const { return m_ScreenHeight; }
 private:
 	std::vector<GameObject*>		m_GameObjects;
+	std::vector<GameObject*>		m_GameObjectsBuffer;
 	/*window*/
 	const unsigned int				m_ScreenWidth;
 	const unsigned int				m_ScreenHeight;
@@ -41,5 +43,6 @@ private:
 	void HandleEvents();
 	void UpdateMechanics();
 	void Render();
+	void ProcessBuffer();
 };
 

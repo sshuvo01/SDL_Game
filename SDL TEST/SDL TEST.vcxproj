@@ -130,6 +130,8 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="src\Application.cpp" />
+    <ClCompile Include="src\Bullet.cpp" />
+    <ClCompile Include="src\CallOfMonsters.cpp" />
     <ClCompile Include="src\CircularBG.cpp" />
     <ClCompile Include="src\Coins.cpp" />
     <ClCompile Include="src\Collision.cpp" />
@@ -140,6 +142,7 @@
     <ClCompile Include="src\Particle.cpp" />
     <ClCompile Include="src\ParticleEmitter.cpp" />
     <ClCompile Include="src\Player.cpp" />
+    <ClCompile Include="src\PlayerCOM.cpp" />
     <ClCompile Include="src\PlayerNew.cpp" />
     <ClCompile Include="src\Sprite.cpp" />
     <ClCompile Include="src\SpriteController.cpp" />
@@ -151,6 +154,8 @@
     <ClCompile Include="src\Vector2.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\Bullet.h" />
+    <ClInclude Include="src\CallOfMonsters.h" />
     <ClInclude Include="src\CircularBG.h" />
     <ClInclude Include="src\Coins.h" />
     <ClInclude Include="src\Collision.h" />
@@ -162,6 +167,7 @@
     <ClInclude Include="src\Particle.h" />
     <ClInclude Include="src\ParticleEmitter.h" />
     <ClInclude Include="src\Player.h" />
+    <ClInclude Include="src\PlayerCOM.h" />
     <ClInclude Include="src\PlayerNew.h" />
     <ClInclude Include="src\Sprite.h" />
     <ClInclude Include="src\SpriteController.h" />
