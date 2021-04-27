@@ -43,6 +43,15 @@ void PlayerCOM::Render()
 	SDL_Rect dstRect = { m_Position.X(), m_Position.Y(), m_Width, m_Height };
 	bool flipHorizontally = m_FaceDirection.GetCurrentState() == "right" ? false : true;
 
+	if (!BlinkRender()) return;
+	/*
+	static bool swtch = true;
+	swtch = !swtch;
+	if (!swtch)
+	{
+		return;
+	}
+	*/
 	if (currentState == "idle")
 	{
 		m_SpriteController->Play("idle", dstRect, flipHorizontally);
@@ -155,4 +164,21 @@ void PlayerCOM::CheckBoundary()
 
 	if (m_Position[0] + m_Width > m_ScreenWidth)  m_Position[0] = m_ScreenWidth - m_Width;
 	if (m_Position[1] + m_Height > m_ScreenHeight) m_Position[1] = m_ScreenHeight - m_Height;
+}
+
+bool PlayerCOM::BlinkRender()
+{
+	static int blinker = 6;
+	if (m_BlinkTimer.TimeUp())
+	{
+		blinker--;
+		if (blinker <= 0)
+		{
+			m_BlinkTimer.Start(200);
+			blinker = 5;
+		}
+		return false;
+	}
+
+	return true;
 }

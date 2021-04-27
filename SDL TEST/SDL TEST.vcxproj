@@ -150,6 +150,7 @@
     <ClCompile Include="src\Texture.cpp" />
     <ClCompile Include="src\TexturesSlider.cpp" />
     <ClCompile Include="src\Tileset.cpp" />
+    <ClCompile Include="src\Timer.cpp" />
     <ClCompile Include="src\TSGround.cpp" />
     <ClCompile Include="src\Vector2.cpp" />
   </ItemGroup>
@@ -175,6 +176,7 @@
     <ClInclude Include="src\Texture.h" />
     <ClInclude Include="src\TexturesSlider.h" />
     <ClInclude Include="src\Tileset.h" />
+    <ClInclude Include="src\Timer.h" />
     <ClInclude Include="src\TSGround.h" />
     <ClInclude Include="src\Vector2.h" />
   </ItemGroup>

@@ -8,6 +8,7 @@
 #include "SpriteController.h"
 #include <iostream>
 #include "CallOfMonsters.h"
+#include "Timer.h"
 
 class CallOfMonsters;
 
@@ -29,8 +30,10 @@ public:
 	CallOfMonsters*		m_GameControl;
 private:
 	int				m_ScreenWidth, m_ScreenHeight;
+	Timer			m_BlinkTimer;
 	/*private functions*/
 	void SetupStateMachine();
 	void CheckBoundary();
+	bool BlinkRender();
 };
 
