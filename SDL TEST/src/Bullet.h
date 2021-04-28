@@ -16,12 +16,14 @@ public:
 	void Render() override;
 	void HandleInput(const SDL_Event& event, double deltaTime) override;
 	/*public variables*/
-
-private:
 	StateMachine	m_StateMachine;
-	int				m_Speed = 0;
 	Vector2			m_Position;
 	int				m_Width, m_Height, m_ScreenWidth, m_ScreenHeight;
+private:
+	int				m_Speed = 0;
 	Texture			m_Texture;
+
+	/*private functions*/
+	void SetupStateMachine();
 };
 

@@ -66,6 +66,16 @@ bool SpriteController::PlayOnce(const std::string & spriteName, const SDL_Rect &
 	}
 
 	m_LastPlayedSprite = spriteName;
-	
 	return reachedLastFrame;
+}
+
+void SpriteController::ResetSprite(const std::string & spriteName)
+{
+	if (m_SpriteMap.count(spriteName) == 0)
+	{
+		std::cout << "Sprite " << spriteName << " not found\n";
+		return;
+	}
+
+	m_SpriteMap[spriteName]->ResetFrames();
 }

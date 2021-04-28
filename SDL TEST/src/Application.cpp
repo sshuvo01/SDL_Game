@@ -20,6 +20,9 @@
 #include "PlayerCOM.h"
 #include "Bullet.h"
 #include "CallOfMonsters.h"
+#include "EnemyCOM.h"
+#include "BackgroundCOM.h"
+#include "HUD.h"
 
 int main444()
 {
@@ -142,26 +145,59 @@ int main()
 	int groundHeight = 490; // from top
 	Sprite idleSprite = Sprite("res/img/player/Player_Idle_New.png", renderer, "idle", 216, 17, false, 15);
 	Sprite runSprite = Sprite("res/img/player/Player_Run.png", renderer, "run", 216, 17, false, 30);
-	Sprite shootSprite = Sprite("res/img/player/Player_Shoot.png", renderer, "shoot", 216, 15, true, 40);
+	Sprite shootSprite = Sprite("res/img/player/Player_Shoot_New_2.png", renderer, "shoot", 216, 9, true, 40);
+	Sprite dieSprite = Sprite("res/img/player/Player_Die.png", renderer, "die", 360, 12, true);
+	int playerDieW = 360 / 2, playerDieH = 300 / 2;
 
 	SpriteController playerSprites;
 	playerSprites.AddSprite(&idleSprite);
 	playerSprites.AddSprite(&runSprite);
 	playerSprites.AddSprite(&shootSprite);
+	playerSprites.AddSprite(&dieSprite);
 
 	int playerW = 215/2;
 	int playerH = 300/2;
 	Vector2 playerPos(500, groundHeight - playerH);
 	PlayerCOM player(playerPos, playerW, playerH);
 	player.m_SpriteController = &playerSprites;
+	player.m_WidthDie = playerDieW;
+	player.m_HeightDie = playerDieH;
+	player.m_Hitpoint = 4;
 
+	// enemy
+	int enemyW = 564 / 2;
+	int enemyH = 215 / 2;
+	Vector2 enemyPos(100, groundHeight - enemyH);
+	EnemyCOM enemy(enemyPos, enemyW, enemyH);
+
+	Sprite enemySpriteIdle = Sprite("res/img/Monster/RedSlimeSheets/RedSlimeIdleSheet.png", renderer, "idle", 564, 25, false, 25);
+	Sprite enemySpriteRun = Sprite("res/img/Monster/RedSlimeSheets/RedSlimeWalkSheet.png", renderer, "run", 564, 21, false, 25);
+	
+	enemy.m_SpriteController = new SpriteController;
+	enemy.m_SpriteController->AddSprite(&enemySpriteIdle);
+	enemy.m_SpriteController->AddSprite(&enemySpriteRun);
+	
+	// platform
+	TSGround platform;
+	// background
+	BackgroundCOM background;
+	// HUD
+	HUD theHUD(player.m_Hitpoint);
+	//theHUD.AddScore(100);
 	CallOfMonsters gameControl;
 	player.m_GameControl = &gameControl;
+	gameControl.m_ThePlayer = &player;
+	gameControl.m_TheHUD = &theHUD;
 	//Bullet aBullet = Bullet(playerPos, 384/16, 320/16, -3);
 	CallOfMonsters* aaa;
+	theGameEngine.AddGameObject(&background);
 	theGameEngine.AddGameObject(&player);
+	//theGameEngine.AddGameObject(&enemy);
 	//theGameEngine.AddGameObject(&aBullet);
 	theGameEngine.AddGameObject(&gameControl);
+	theGameEngine.AddGameObject(&platform);
+	theGameEngine.AddGameObject(&theHUD);
+
 	theGameEngine.Run();
 
 	std::cin.get();

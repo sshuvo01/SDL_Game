@@ -8,6 +8,8 @@ class Sprite
 public:
 	Sprite(const std::string& filepath, SDL_Renderer* renderer,
 		const std::string& spriteName, int frameW, int frameCount, bool playOnce = false, int frameRate = 10);
+	Sprite(Texture* spriteTexture, const std::string& spriteName, int frameW, int frameCount,
+		bool PlayOnce = false, int frameRate = 10);
 	~Sprite();
 
 	bool Render(const SDL_Rect& dstRect, bool flip = false);

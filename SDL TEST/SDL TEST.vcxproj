@@ -87,12 +87,12 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>F:\_Study\2D Game\SDL2_image-2.0.5\include;F:\_Study\2D Game\SDL2-2.0.14\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>F:\_Study\2D Game\SDL2_ttf-2.0.15\include;F:\_Study\2D Game\SDL2_image-2.0.5\include;F:\_Study\2D Game\SDL2-2.0.14\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
-      <AdditionalLibraryDirectories>F:\_Study\2D Game\SDL2_image-2.0.5\lib\x64;F:\_Study\2D Game\SDL2-2.0.14\lib\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;SDL2.lib;SDL2main.lib;SDL2test.lib;SDL2_image.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>F:\_Study\2D Game\SDL2_ttf-2.0.15\lib\x64;F:\_Study\2D Game\SDL2_image-2.0.5\lib\x64;F:\_Study\2D Game\SDL2-2.0.14\lib\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;SDL2.lib;SDL2main.lib;SDL2test.lib;SDL2_image.lib;SDL2_ttf.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -118,26 +118,29 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>F:\_Study\2D Game\SDL2_image-2.0.5\include;F:\_Study\2D Game\SDL2-2.0.14\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>F:\_Study\2D Game\SDL2_ttf-2.0.15\include;F:\_Study\2D Game\SDL2_image-2.0.5\include;F:\_Study\2D Game\SDL2-2.0.14\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalLibraryDirectories>F:\_Study\2D Game\SDL2_image-2.0.5\lib\x64;F:\_Study\2D Game\SDL2-2.0.14\lib\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;SDL2.lib;SDL2main.lib;SDL2test.lib;SDL2_image.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>F:\_Study\2D Game\SDL2_ttf-2.0.15\lib\x64;F:\_Study\2D Game\SDL2_image-2.0.5\lib\x64;F:\_Study\2D Game\SDL2-2.0.14\lib\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;SDL2.lib;SDL2main.lib;SDL2test.lib;SDL2_image.lib;SDL2_ttf.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="src\Application.cpp" />
+    <ClCompile Include="src\BackgroundCOM.cpp" />
     <ClCompile Include="src\Bullet.cpp" />
     <ClCompile Include="src\CallOfMonsters.cpp" />
     <ClCompile Include="src\CircularBG.cpp" />
     <ClCompile Include="src\Coins.cpp" />
     <ClCompile Include="src\Collision.cpp" />
+    <ClCompile Include="src\EnemyCOM.cpp" />
     <ClCompile Include="src\GameEngine.cpp" />
     <ClCompile Include="src\GameObject.cpp" />
     <ClCompile Include="src\Ground.cpp" />
+    <ClCompile Include="src\HUD.cpp" />
     <ClCompile Include="src\Obstacle.cpp" />
     <ClCompile Include="src\Particle.cpp" />
     <ClCompile Include="src\ParticleEmitter.cpp" />
@@ -155,15 +158,18 @@
     <ClCompile Include="src\Vector2.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\BackgroundCOM.h" />
     <ClInclude Include="src\Bullet.h" />
     <ClInclude Include="src\CallOfMonsters.h" />
     <ClInclude Include="src\CircularBG.h" />
     <ClInclude Include="src\Coins.h" />
     <ClInclude Include="src\Collision.h" />
     <ClInclude Include="src\Core.h" />
+    <ClInclude Include="src\EnemyCOM.h" />
     <ClInclude Include="src\GameEngine.h" />
     <ClInclude Include="src\GameObject.h" />
     <ClInclude Include="src\Ground.h" />
+    <ClInclude Include="src\HUD.h" />
     <ClInclude Include="src\Obstacle.h" />
     <ClInclude Include="src\Particle.h" />
     <ClInclude Include="src\ParticleEmitter.h" />

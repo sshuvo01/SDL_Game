@@ -38,6 +38,7 @@ void TSGround::Init(GameEngine * ge)
 
 void TSGround::Update(double deltaTime)
 {
+	return;
 	if (m_Player->m_StateMachine.GetCurrentState() == "hurt")
 	{
 		m_StateMachine.TransitionTo("idle");
@@ -61,6 +62,7 @@ void TSGround::Render()
 
 void TSGround::HandleInput(const SDL_Event & event, double deltaTime)
 {
+	return;
 	switch (event.key.keysym.sym)
 	{
 	case SDLK_a:

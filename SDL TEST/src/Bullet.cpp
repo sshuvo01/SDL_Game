@@ -8,8 +8,7 @@ Bullet::Bullet(Vector2 pos, int width, int height, int speed)
 	m_Speed(speed),
 	m_StateMachine("fired")
 {
-	m_StateMachine.AddTransition("fired", "hitboundary");
-	m_StateMachine.AddTransition("fired", "hitenemy");
+	SetupStateMachine();
 }
 
 Bullet::~Bullet()
@@ -48,5 +47,11 @@ void Bullet::Render()
 
 void Bullet::HandleInput(const SDL_Event & event, double deltaTime)
 {
+}
+
+void Bullet::SetupStateMachine()
+{
+	m_StateMachine.AddTransition("fired", "hitboundary");
+	m_StateMachine.AddTransition("fired", "hitenemy");
 }
 

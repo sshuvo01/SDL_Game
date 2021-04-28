@@ -80,12 +80,14 @@ void Tileset::ParseFile()
 		}
 		std::vector<std::string> words = GetWords(line);
 		// x1 y1 w1 h1 | x2 y2 w2 h2 format
+		/*
 		if (words.size() != 9)
 		{
 			std::cout << "size: " << words.size() << std::endl;
 			std::cout << "Invalid file format\n";
 			return;
 		}
+		*/
 		SDL_Rect srcRect, dstRect;
 		srcRect.x = std::stoi(words[0]);
 		srcRect.y = std::stoi(words[1]);

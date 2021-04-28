@@ -9,6 +9,7 @@
 #include <iostream>
 #include "CallOfMonsters.h"
 #include "Timer.h"
+#include <cstdlib>
 
 class CallOfMonsters;
 
@@ -25,9 +26,11 @@ public:
 	/*public members*/
 	SpriteController*	m_SpriteController = nullptr;
 	Vector2				m_Position;
-	int					m_Width, m_Height;
+	int					m_Width, m_Height, m_WidthDie, m_HeightDie, m_Hitpoint;
 	StateMachine		m_StateMachine, m_FaceDirection;
 	CallOfMonsters*		m_GameControl;
+	bool				m_Hurt;
+	Timer				m_HurtTimer;
 private:
 	int				m_ScreenWidth, m_ScreenHeight;
 	Timer			m_BlinkTimer;

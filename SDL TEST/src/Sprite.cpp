@@ -16,6 +16,21 @@ Sprite::Sprite(const std::string& filepath, SDL_Renderer* renderer,
 	m_FrameDuration = 1000 / m_FrameRate;
 }
 
+Sprite::Sprite(Texture * spriteTexture, const std::string & spriteName, int frameW, int frameCount, 
+	bool PlayOnce, int frameRate)
+	:m_Name(spriteName),
+	m_FrameWidth(frameW),
+	m_FrameNumber(0),
+	m_FrameCount(frameCount),
+	m_FrameRate(frameRate),
+	m_Texture(*spriteTexture),
+	m_PlayOnce(PlayOnce)
+{
+	//m_Texture = *spriteTexture;
+	m_LastFrameUpdateTime = SDL_GetTicks();
+	m_FrameDuration = 1000 / m_FrameRate;
+}
+
 Sprite::~Sprite()
 {
 }
