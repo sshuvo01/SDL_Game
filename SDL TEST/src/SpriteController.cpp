@@ -79,3 +79,11 @@ void SpriteController::ResetSprite(const std::string & spriteName)
 
 	m_SpriteMap[spriteName]->ResetFrames();
 }
+
+void SpriteController::FreeSprites()
+{
+	for (auto it = m_SpriteMap.begin(); it != m_SpriteMap.end(); it++)
+	{
+		delete it->second;
+	}
+}

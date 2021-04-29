@@ -15,6 +15,8 @@ EnemyCOM::EnemyCOM(const Vector2& pos, int width, int height)
 
 EnemyCOM::~EnemyCOM()
 {
+	m_SpriteController->FreeSprites();
+	delete m_SpriteController;
 }
 
 void EnemyCOM::Init(GameEngine * ge)
@@ -96,7 +98,7 @@ void EnemyCOM::HandleInput(const SDL_Event & event, double deltaTime)
 
 bool EnemyCOM::BecomeIdle() const
 {
-	int chance = 6;// chance to become idle = chance/1000
+	int chance = 5;// chance to become idle = chance/1000
 	int randomN = rand() % 1000;
 	randomN++;
 

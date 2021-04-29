@@ -32,10 +32,12 @@ private:
 	std::vector<Bullet*>		m_Bullets;
 	std::vector<EnemyCOM*>		m_Enemies;
 	Timer						m_EnemySpawnTimer;
-	Texture						*m_Idle = nullptr, *m_Run = nullptr, *m_Hurt = nullptr, *m_Die = nullptr;
+	Texture						*m_Idle = nullptr, *m_Run = nullptr, *m_Hurt = nullptr, 
+								*m_Die = nullptr, *m_Bullet = nullptr;
 	/*private functions*/
 	void CollisionResolution();
 	void UpdateEnemy();
-	void LoadSpriteTextures();
+	void ClearGameObjects();
+	void LoadTextures();
 };
 

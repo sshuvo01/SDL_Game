@@ -14,6 +14,7 @@ public:
 	void Run();
 	void AddGameObject(GameObject* go);	
 	void AddGameObjectBuffer(GameObject* go);
+	void DeleteGameObjectBuffer(GameObject* go);
 	/*setters and getters*/
 	inline unsigned int GetWidth() const { return m_ScreenWidth; }
 	inline unsigned int GetHeight() const { return m_ScreenHeight; }
@@ -25,6 +26,7 @@ public:
 private:
 	std::vector<GameObject*>		m_GameObjects;
 	std::vector<GameObject*>		m_GameObjectsBuffer;
+	std::vector<GameObject*>		m_GameObjectDeleteBuffer;
 	/*window*/
 	const unsigned int				m_ScreenWidth;
 	const unsigned int				m_ScreenHeight;

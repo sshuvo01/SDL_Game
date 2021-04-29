@@ -1,4 +1,5 @@
 #include "GameEngine.h"
+#include <algorithm>
 
 GameEngine::GameEngine(unsigned int width, unsigned int height, unsigned int maxFPS)
 	: m_ScreenWidth(width), m_ScreenHeight(height), m_MaxFPS(maxFPS)
@@ -28,7 +29,7 @@ bool GameEngine::InitWindow()
 	//Enable gpu_enhanced textures
 	IMG_Init(IMG_INIT_PNG);
 
-	m_Window = SDL_CreateWindow("Game",
+	m_Window = SDL_CreateWindow("Call of Monsters",
 		SDL_WINDOWPOS_CENTERED,
 		SDL_WINDOWPOS_CENTERED,
 		m_ScreenWidth,
@@ -89,6 +90,17 @@ void GameEngine::ProcessBuffer()
 		go->Init(this);
 	}
 	m_GameObjectsBuffer.clear();
+	// delete the gameobjects in the list
+	for (GameObject* goDelete : m_GameObjectDeleteBuffer)
+	{
+		auto iter = std::find(m_GameObjects.begin(), m_GameObjects.end(), goDelete);
+		if (iter != m_GameObjects.end())
+		{
+			delete *iter;
+			m_GameObjects.erase(iter);
+		}
+	}
+	m_GameObjectDeleteBuffer.clear();
 }
 
 void GameEngine::Run()
@@ -105,6 +117,7 @@ void GameEngine::Run()
 		HandleEvents();
 		UpdateMechanics();
 		Render();
+		//std::cout << "Number of GO: " << m_GameObjects.size() << "\n";
 		elapsedtime =  SDL_GetTicks() - frameStartTime;
 		/*limit the FPS*/
 		if (elapsedtime < (Uint32) frameDuration)
@@ -125,4 +138,9 @@ void GameEngine::AddGameObject(GameObject * go)
 void GameEngine::AddGameObjectBuffer(GameObject * go)
 {
 	m_GameObjectsBuffer.push_back(go);
+}
+
+void GameEngine::DeleteGameObjectBuffer(GameObject * go)
+{
+	m_GameObjectDeleteBuffer.push_back(go);
 }

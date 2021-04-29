@@ -28,7 +28,7 @@ Texture::Texture(const std::string & path, SDL_Renderer * renderer, int x, int y
 
 Texture::~Texture()
 {
-	SDL_DestroyTexture(m_Texture);
+	//SDL_DestroyTexture(m_Texture);
 }
 
 void Texture::LoadTexture(const std::string & path, SDL_Renderer* renderer, 

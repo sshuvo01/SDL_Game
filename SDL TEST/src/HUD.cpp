@@ -107,7 +107,7 @@ void HUD::Render() {
 
 void HUD::Update(double deltaTime) {
 	char *t;
-	std::string temp = "score: " + std::to_string(score);
+	std::string temp = "SCORE: " + std::to_string(score);
 	t = (char*)temp.c_str();
 	//Set Text color and render it to a solid of a surface
 	SDL_Color ColorOfText = { 255, 255, 255 };

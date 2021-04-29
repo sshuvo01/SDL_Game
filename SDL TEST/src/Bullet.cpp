@@ -1,12 +1,13 @@
 #include "Bullet.h"
 #include "Collision.h"
 
-Bullet::Bullet(Vector2 pos, int width, int height, int speed)
+Bullet::Bullet(Vector2 pos, int width, int height, int speed, Texture* texture)
 	:m_Position(pos),
 	m_Width(width),
 	m_Height(height),
 	m_Speed(speed),
-	m_StateMachine("fired")
+	m_StateMachine("fired"),
+	m_Texture(texture)
 {
 	SetupStateMachine();
 }
@@ -17,7 +18,7 @@ Bullet::~Bullet()
 
 void Bullet::Init(GameEngine * ge)
 {
-	m_Texture.LoadTexture("res/img/bullets/bullet3.png", ge->GetRenderer());
+	//m_Texture.LoadTexture("res/img/bullets/bullet3.png", ge->GetRenderer());
 	m_ScreenWidth = ge->GetWidth();
 	m_ScreenHeight = ge->GetHeight();
 }
@@ -42,7 +43,7 @@ void Bullet::Render()
 {
 	if (m_StateMachine.GetCurrentState() != "fired") return;
 	SDL_Rect dstRect = { m_Position.X(), m_Position.Y(), m_Width, m_Height };
-	m_Speed < 0 ? m_Texture.RenderCopyHFlip(dstRect) : m_Texture.RenderCopy(dstRect);
+	m_Speed < 0 ? m_Texture->RenderCopyHFlip(dstRect) : m_Texture->RenderCopy(dstRect);
 }
 
 void Bullet::HandleInput(const SDL_Event & event, double deltaTime)

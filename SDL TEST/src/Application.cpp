@@ -139,6 +139,17 @@ int main22()
 
 int main()
 {
+	/*
+	HUD* aH = new HUD;
+	GameObject* a = aH;
+	GameObject* b = new HUD;
+
+	std::cout << a << " " << aH << std::endl;
+	if (b == aH)
+		std::cout << "Bingo\n";
+	std::cin.get();
+	std::cin.get();
+	*/
 	GameEngine theGameEngine;
 	SDL_Renderer* renderer = theGameEngine.GetRenderer();
 
@@ -162,21 +173,8 @@ int main()
 	player.m_SpriteController = &playerSprites;
 	player.m_WidthDie = playerDieW;
 	player.m_HeightDie = playerDieH;
-	player.m_Hitpoint = 4;
+	player.m_Hitpoint = 5;
 
-	// enemy
-	int enemyW = 564 / 2;
-	int enemyH = 215 / 2;
-	Vector2 enemyPos(100, groundHeight - enemyH);
-	EnemyCOM enemy(enemyPos, enemyW, enemyH);
-
-	Sprite enemySpriteIdle = Sprite("res/img/Monster/RedSlimeSheets/RedSlimeIdleSheet.png", renderer, "idle", 564, 25, false, 25);
-	Sprite enemySpriteRun = Sprite("res/img/Monster/RedSlimeSheets/RedSlimeWalkSheet.png", renderer, "run", 564, 21, false, 25);
-	
-	enemy.m_SpriteController = new SpriteController;
-	enemy.m_SpriteController->AddSprite(&enemySpriteIdle);
-	enemy.m_SpriteController->AddSprite(&enemySpriteRun);
-	
 	// platform
 	TSGround platform;
 	// background
@@ -192,8 +190,6 @@ int main()
 	CallOfMonsters* aaa;
 	theGameEngine.AddGameObject(&background);
 	theGameEngine.AddGameObject(&player);
-	//theGameEngine.AddGameObject(&enemy);
-	//theGameEngine.AddGameObject(&aBullet);
 	theGameEngine.AddGameObject(&gameControl);
 	theGameEngine.AddGameObject(&platform);
 	theGameEngine.AddGameObject(&theHUD);

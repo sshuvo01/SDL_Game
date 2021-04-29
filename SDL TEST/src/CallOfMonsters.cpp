@@ -2,6 +2,7 @@
 #include "Collision.h"
 #include "SpriteController.h"
 #include "Timer.h"
+#include <algorithm>
 
 CallOfMonsters::CallOfMonsters()
 {
@@ -14,7 +15,7 @@ CallOfMonsters::~CallOfMonsters()
 void CallOfMonsters::Init(GameEngine * ge)
 {
 	m_GE = ge;
-	LoadSpriteTextures();
+	LoadTextures();
 }
 
 void CallOfMonsters::Update(double deltaTime)
@@ -32,11 +33,12 @@ void CallOfMonsters::Update(double deltaTime)
 		spawnLeft ? enemyPos[0] = -enemyW : enemyPos[0] = rightB;
 
 		SpawnEnemy(enemyPos, 2);
-		m_EnemySpawnTimer.Start(2200);
+		m_EnemySpawnTimer.Start(1600);
 	}
 
 	CollisionResolution();
 	UpdateEnemy();
+	ClearGameObjects();
 }
 
 void CallOfMonsters::Render()
@@ -49,7 +51,7 @@ void CallOfMonsters::HandleInput(const SDL_Event & event, double deltaTime)
 
 void CallOfMonsters::SpawnBullet(const Vector2 & pos, int speed)
 {
-	Bullet* bullet = new Bullet(pos, 384 / 20, 320 / 20, speed);
+	Bullet* bullet = new Bullet(pos, 384 / 20, 320 / 20, speed, m_Bullet);
 	m_GE->AddGameObjectBuffer(bullet);
 	m_Bullets.push_back(bullet);
 }
@@ -181,10 +183,43 @@ void CallOfMonsters::UpdateEnemy()
 	}
 }
 
-void CallOfMonsters::LoadSpriteTextures()
+void CallOfMonsters::ClearGameObjects()
+{
+	// 
+	for (EnemyCOM* enm : m_Enemies)
+	{
+		if (enm->m_StateMachine.GetCurrentState() == "dead")
+		{
+			m_GE->DeleteGameObjectBuffer(enm);
+			auto iter = std::find(m_Enemies.begin(), m_Enemies.end(), enm);
+			if (iter != m_Enemies.end())
+			{
+				//delete	*iter;
+				m_Enemies.erase(iter);
+			}
+		}
+	}
+	// clear the bullets
+	for (Bullet* bullet : m_Bullets)
+	{
+		if (bullet->m_StateMachine.GetCurrentState() != "fired")
+		{
+			m_GE->DeleteGameObjectBuffer(bullet);
+			auto iter = std::find(m_Bullets.begin(), m_Bullets.end(), bullet);
+			if (iter != m_Bullets.end())
+			{
+				m_Bullets.erase(iter);
+			}
+		}
+	}
+	
+}
+
+void CallOfMonsters::LoadTextures()
 {
 	m_Idle = new Texture("res/img/Monster/RedSlimeSheets/RedSlimeIdleSheet.png", m_GE->GetRenderer());
 	m_Run = new Texture("res/img/Monster/RedSlimeSheets/RedSlimeWalkSheet.png", m_GE->GetRenderer());
 	m_Hurt = new Texture("res/img/Monster/RedSlimeSheets/RedSlimeHurtSheet.png", m_GE->GetRenderer());
 	m_Die = new Texture("res/img/Monster/RedSlimeSheets/RedSlimeDieSheet.png", m_GE->GetRenderer());
+	m_Bullet = new Texture("res/img/bullets/bullet3.png", m_GE->GetRenderer());
 }

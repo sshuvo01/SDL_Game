@@ -8,7 +8,7 @@
 class Bullet : public GameObject
 {
 public:
-	Bullet(Vector2 pos, int width, int height, int speed);
+	Bullet(Vector2 pos, int width, int height, int speed, Texture* texture);
 	~Bullet();
 
 	void Init(GameEngine* ge) override;
@@ -21,7 +21,7 @@ public:
 	int				m_Width, m_Height, m_ScreenWidth, m_ScreenHeight;
 private:
 	int				m_Speed = 0;
-	Texture			m_Texture;
+	Texture*		m_Texture;
 
 	/*private functions*/
 	void SetupStateMachine();
