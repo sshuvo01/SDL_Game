@@ -8,6 +8,10 @@ GameEngine::GameEngine(unsigned int width, unsigned int height, unsigned int max
 	m_DeltaTime = 0.0;
 	bool ret = InitWindow();
 	assert(ret); 
+	m_GameOver = false;
+	m_StartTexture.LoadTexture("res/img/startscreen.png", m_Renderer);
+	m_EndTexture.LoadTexture("res/img/endscreen.png", m_Renderer);
+	m_StartScreenTimer.Start(3000);
 }
 
 GameEngine::~GameEngine()
@@ -78,6 +82,11 @@ void GameEngine::Render()
 	{
 		go->Render();
 	}
+	//
+	if(m_GameOver) m_EndTexture.RenderCopy({ 0, 0, (int)m_ScreenWidth, (int)m_ScreenHeight });
+	if (!m_StartScreenTimer.TimeUp()) 
+		m_StartTexture.RenderCopy({ 0, 0, (int)m_ScreenWidth, (int)m_ScreenHeight });
+	//
 	SDL_RenderPresent(m_Renderer);
 }
 

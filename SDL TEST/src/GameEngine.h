@@ -3,6 +3,8 @@
 #include "GameObject.h"
 #include <vector>
 #include <iostream>
+#include "Texture.h"
+#include "Timer.h"
 
 class GameObject;
 
@@ -23,6 +25,9 @@ public:
 	inline SDL_Renderer* GetRenderer() { return m_Renderer; }
 	inline unsigned int GetScreenWidth() const { return m_ScreenWidth; }
 	inline unsigned int GetScreenHeight() const { return m_ScreenHeight; }
+	bool m_GameOver;
+	Texture m_StartTexture, m_EndTexture;
+	Timer m_StartScreenTimer;
 private:
 	std::vector<GameObject*>		m_GameObjects;
 	std::vector<GameObject*>		m_GameObjectsBuffer;

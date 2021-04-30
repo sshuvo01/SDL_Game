@@ -19,7 +19,7 @@ void PlayerCOM::Init(GameEngine * ge)
 	m_ScreenWidth = ge->GetScreenWidth();
 	m_ScreenHeight = ge->GetScreenHeight();
 	m_Hurt = false;
-	//m_Hitpoint = 2;
+	m_GE = ge;
 }
 
 void PlayerCOM::Update(double deltaTime)
@@ -43,6 +43,10 @@ void PlayerCOM::Update(double deltaTime)
 	{
 		m_Width = m_WidthDie;
 		m_Height = m_HeightDie;
+	}
+	if(state == "dead")
+	{
+		m_GE->m_GameOver = true;
 	}
 	CheckBoundary();
 }

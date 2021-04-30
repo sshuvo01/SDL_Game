@@ -34,6 +34,7 @@ public:
 private:
 	int				m_ScreenWidth, m_ScreenHeight;
 	Timer			m_BlinkTimer;
+	GameEngine*		m_GE;
 	/*private functions*/
 	void SetupStateMachine();
 	void CheckBoundary();
